@@ -1,25 +1,34 @@
 package com.lmw.battleshipcli;
 
+import java.util.ArrayList;
+
 /**
  * Created by lisam on 8/31/2016.
  */
-public class DotCom {
-    private int[] locationCells;
-    private int numOfHits = 0;
 
-    String checkYourself(String guess){
-        for(int cell:locationCells){
-            if(guess == locationCells[cell]){
-                return "Hit";
-            }
-            else{
-                return "Miss";
+public class DotCom {
+    //instance variables
+    private ArrayList<String> locationCells;
+
+    //methods
+    public void setLocationCells(ArrayList<String> loc){
+        locationCells = loc;
+    }
+
+    String checkYourself(String userInput){
+        String result = "miss";
+
+        int index = locationCells.indexOf(userInput);
+        if (index >= 0){
+            locationCells.remove(index);
+
+            if(locationCells.isEmpty()){
+                result = "kill";
+            }else{
+                reuslt = "hit";
             }
         }
 
-    }
-
-    void setLocationCells(int[] loc){
-
+        return result;
     }
 }
